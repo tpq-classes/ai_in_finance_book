@@ -32,8 +32,8 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
    "metadata": {},
+   "execution_count": null,
    "outputs": [],
    "source": [
     "!git clone https://github.com/tpq-classes/ai_in_finance_book.git\n",
@@ -209,26 +209,12 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "7ec0d249",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
-   "source": [
-    "from tensorflow.python.framework.ops import disable_eager_execution\n",
-    "#disable_eager_execution()"
-   ]
-  },
-  {
    "cell_type": "code",
    "execution_count": null,
-   "id": "aadf39bf",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
+    "from tensorflow.python.framework.ops import disable_eager_execution\n",
     "#disable_eager_execution()"
    ]
   },
@@ -288,12 +274,10 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "3f0c0d71",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
    "source": [
     "def epoch():\n",
     "    print('|', end='')\n",
@@ -302,28 +286,6 @@
     "    treward = 1\n",
     "    while not done:\n",
     "        action = np.where(model.predict(np.atleast_2d(state), verbose=0)[0][0] > 0.5, 1, 0)\n",
-    "        state, reward, done, trunc, info = env.step(action)\n",
-    "        treward += reward if not done else 0\n",
-    "    return treward"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "24f13a24",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
-   "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "def epoch():\n",
-    "    print('|', end='')\n",
-    "    done = False\n",
-    "    state = env.reset()[0]\n",
-    "    treward = 1\n",
-    "    while not done:\n",
-    "        action = np.where(model(tf.convert_to_tensor(np.atleast_2d(state, dtype=tf.float32), training=False).numpy(), verbose=0)[0][0] > 0.5, 1, 0)\n",
     "        state, reward, done, trunc, info = env.step(action)\n",
     "        treward += reward if not done else 0\n",
     "    return treward"
@@ -371,8 +333,8 @@
  ],
  "metadata": {
   "kernelspec": {
-   "display_name": "Python 3",
-   "name": "python3"
+   "name": "python3",
+   "display_name": "Python 3"
   },
   "language_info": {
    "codemirror_mode": {

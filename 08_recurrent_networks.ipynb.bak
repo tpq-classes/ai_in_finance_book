@@ -39,8 +39,8 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
    "metadata": {},
+   "execution_count": null,
    "outputs": [],
    "source": [
     "!git clone https://github.com/tpq-classes/ai_in_finance_book.git\n",
@@ -843,27 +843,12 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "e4556709",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
-   "source": [
-    "y = model.predict(g_)"
-   ]
-  },
-  {
    "cell_type": "code",
    "execution_count": null,
-   "id": "45cc24ae",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
-    "import tensorflow as tf\n",
-    "y = model(tf.convert_to_tensor(g_, dtype=tf.float32), training=False).numpy()"
+    "y = model.predict(g_)"
    ]
   },
   {
@@ -1024,27 +1009,12 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "e166a9ec",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
-   "source": [
-    "y = model.predict(g_).flatten()"
-   ]
-  },
-  {
    "cell_type": "code",
    "execution_count": null,
-   "id": "462c7736",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
-    "import tensorflow as tf\n",
-    "y = model(tf.convert_to_tensor(g_, dtype=tf.float32), training=False).numpy().flatten()"
+    "y = model.predict(g_).flatten()"
    ]
   },
   {
@@ -1148,27 +1118,12 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "9192e9fe",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
-   "source": [
-    "y = np.where(model.predict(g_, batch_size=None) > 0.5,\n",
-    "             1, 0).flatten()"
-   ]
-  },
-  {
    "cell_type": "code",
    "execution_count": null,
-   "id": "6fe2b35c",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
-    "y = np.where(model.predict(g_, batch_size=None, verbose=0) > 0.5,\n",
+    "y = np.where(model.predict(g_, batch_size=None) > 0.5,\n",
     "             1, 0).flatten()"
    ]
   },
@@ -1272,27 +1227,12 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "ccc7c338",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
-   "source": [
-    "y = np.where(model.predict(g_, batch_size=None) > 0.5,\n",
-    "             1, 0).flatten()"
-   ]
-  },
-  {
    "cell_type": "code",
    "execution_count": null,
-   "id": "c1b8ac3a",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
-    "y = np.where(model.predict(g_, batch_size=None, verbose=0) > 0.5,\n",
+    "y = np.where(model.predict(g_, batch_size=None) > 0.5,\n",
     "             1, 0).flatten()"
    ]
   },
@@ -1326,8 +1266,8 @@
  ],
  "metadata": {
   "kernelspec": {
-   "display_name": "Python 3",
-   "name": "python3"
+   "name": "python3",
+   "display_name": "Python 3"
   },
   "language_info": {
    "codemirror_mode": {

@@ -39,8 +39,8 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
    "metadata": {},
+   "execution_count": null,
    "outputs": [],
    "source": [
     "!git clone https://github.com/tpq-classes/ai_in_finance_book.git\n",
@@ -326,12 +326,10 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "bba5677c",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
    "source": [
     "%%time\n",
     "for sym in data.columns:\n",
@@ -344,31 +342,6 @@
     "                         shuffle=False)\n",
     "    model.fit(df[cols], df[sym])\n",
     "    pred = model.predict(df[cols])\n",
-    "    acc = accuracy_score(np.sign(df[sym]), np.sign(pred))\n",
-    "    print(f'MLP | {sym:10s} | acc={acc:.4f}')"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "f1b9b286",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
-   "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "%%time\n",
-    "for sym in data.columns:\n",
-    "    df = dfs[sym]\n",
-    "    model = MLPRegressor(hidden_layer_sizes=[512],\n",
-    "                         random_state=100,\n",
-    "                         max_iter=1000,\n",
-    "                         early_stopping=True,\n",
-    "                         validation_fraction=0.15,\n",
-    "                         shuffle=False)\n",
-    "    model.fit(df[cols], df[sym], verbose=0)\n",
-    "    pred = model(tf.convert_to_tensor(df[cols], dtype=tf.float32), training=False).numpy()\n",
     "    acc = accuracy_score(np.sign(df[sym]), np.sign(pred))\n",
     "    print(f'MLP | {sym:10s} | acc={acc:.4f}')"
    ]
@@ -425,12 +398,10 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "237ccca1",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
    "source": [
     "%%time\n",
     "for sym in data.columns[:]:\n",
@@ -438,26 +409,6 @@
     "    model = create_model()\n",
     "    model.fit(df[cols], df[sym], epochs=25, verbose=False)\n",
     "    pred = model.predict(df[cols])\n",
-    "    acc = accuracy_score(np.sign(df[sym]), np.sign(pred))\n",
-    "    print(f'DNN | {sym:10s} | acc={acc:.4f}')"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "6a6e46fc",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
-   "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "%%time\n",
-    "for sym in data.columns[:]:\n",
-    "    df = dfs[sym]\n",
-    "    model = create_model()\n",
-    "    model.fit(df[cols], df[sym], epochs=25, verbose=False)\n",
-    "    pred = model(tf.convert_to_tensor(df[cols], dtype=tf.float32), training=False).numpy()\n",
     "    acc = accuracy_score(np.sign(df[sym]), np.sign(pred))\n",
     "    print(f'DNN | {sym:10s} | acc={acc:.4f}')"
    ]
@@ -489,12 +440,10 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "c6328267",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
    "source": [
     "%%time\n",
     "for sym in data.columns:\n",
@@ -516,37 +465,8 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "a3d0c4d8",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "%%time\n",
-    "for sym in data.columns:\n",
-    "    df = dfs[sym]\n",
-    "    train = df.iloc[:split]\n",
-    "    model = MLPRegressor(hidden_layer_sizes=[512],\n",
-    "                         random_state=100,\n",
-    "                         max_iter=1000,\n",
-    "                         early_stopping=True,\n",
-    "                         validation_fraction=0.15,\n",
-    "                         shuffle=False)\n",
-    "    model.fit(train[cols], train[sym], verbose=0)\n",
-    "    test = df.iloc[split:]\n",
-    "    pred = model(tf.convert_to_tensor(test[cols], dtype=tf.float32), training=False).numpy()\n",
-    "    acc = accuracy_score(np.sign(test[sym]), np.sign(pred))\n",
-    "    print(f'MLP | {sym:10s} | acc={acc:.4f}')"
-   ]
-  },
-  {
-   "cell_type": "raw",
-   "id": "b06dd96d",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
    "source": [
     "%%time\n",
     "for sym in data.columns:\n",
@@ -556,28 +476,6 @@
     "    model.fit(train[cols], train[sym], epochs=50, verbose=False)\n",
     "    test = df.iloc[split:]\n",
     "    pred = model.predict(test[cols])\n",
-    "    acc = accuracy_score(np.sign(test[sym]), np.sign(pred))\n",
-    "    print(f'DNN | {sym:10s} | acc={acc:.4f}')"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "b633b616",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
-   "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "%%time\n",
-    "for sym in data.columns:\n",
-    "    df = dfs[sym]\n",
-    "    train = df.iloc[:split]\n",
-    "    model = create_model()\n",
-    "    model.fit(train[cols], train[sym], epochs=50, verbose=False)\n",
-    "    test = df.iloc[split:]\n",
-    "    pred = model(tf.convert_to_tensor(test[cols], dtype=tf.float32), training=False).numpy()\n",
     "    acc = accuracy_score(np.sign(test[sym]), np.sign(pred))\n",
     "    print(f'DNN | {sym:10s} | acc={acc:.4f}')"
    ]
@@ -675,12 +573,10 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "5405fdcb",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
    "source": [
     "%%time\n",
     "for ric in data:\n",
@@ -701,36 +597,8 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "8bd8bbb0",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "%%time\n",
-    "for ric in data:\n",
-    "    model = MLPClassifier(hidden_layer_sizes=[512],\n",
-    "                          random_state=100,\n",
-    "                          max_iter=1000,\n",
-    "                          early_stopping=True,\n",
-    "                          validation_fraction=0.15,\n",
-    "                          shuffle=False)\n",
-    "    df, cols = dfs[ric]\n",
-    "    df[cols] = (df[cols] - df[cols].mean()) / df[cols].std()\n",
-    "    model.fit(df[cols], df['d'], verbose=0)\n",
-    "    pred = model(tf.convert_to_tensor(df[cols], dtype=tf.float32), training=False).numpy()\n",
-    "    acc = accuracy_score(df['d'], pred)\n",
-    "    print(f'IN-SAMPLE | {ric:7s} | acc={acc:.4f}')"
-   ]
-  },
-  {
-   "cell_type": "raw",
-   "id": "050582d4",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
    "source": [
     "%%time\n",
     "for ric in data:\n",
@@ -746,31 +614,8 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "f44c8d3d",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "%%time\n",
-    "for ric in data:\n",
-    "    model = create_model('classification')\n",
-    "    df, cols = dfs[ric]\n",
-    "    df[cols] = (df[cols] - df[cols].mean()) / df[cols].std()\n",
-    "    model.fit(df[cols], df['d'], epochs=50, verbose=False)\n",
-    "    pred = np.where(model(tf.convert_to_tensor(df[cols], dtype=tf.float32), training=False).numpy() > 0.5, 1, 0)\n",
-    "    acc = accuracy_score(df['d'], pred)\n",
-    "    print(f'IN-SAMPLE | {ric:7s} | acc={acc:.4f}')"
-   ]
-  },
-  {
-   "cell_type": "raw",
-   "id": "63891cca",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
    "source": [
     "def train_test_model(model):\n",
     "    for ric in data:\n",
@@ -783,31 +628,6 @@
     "        test = df.iloc[split:].copy() \n",
     "        test[cols] = (test[cols] - mu) / std\n",
     "        pred = model.predict(test[cols])\n",
-    "        acc = accuracy_score(test['d'], pred)\n",
-    "        print(f'OUT-OF-SAMPLE | {ric:7s} | acc={acc:.4f}')"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "ba2de132",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
-   "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "def train_test_model(model):\n",
-    "    for ric in data:\n",
-    "        df, cols = dfs[ric]\n",
-    "        split = int(len(df) * 0.85)\n",
-    "        train = df.iloc[:split].copy()\n",
-    "        mu, std = train[cols].mean(), train[cols].std()\n",
-    "        train[cols] = (train[cols] - mu) / std\n",
-    "        model.fit(train[cols], train['d'], verbose=0)\n",
-    "        test = df.iloc[split:].copy() \n",
-    "        test[cols] = (test[cols] - mu) / std\n",
-    "        pred = model(tf.convert_to_tensor(test[cols], dtype=tf.float32), training=False).numpy()\n",
     "        acc = accuracy_score(test['d'], pred)\n",
     "        print(f'OUT-OF-SAMPLE | {ric:7s} | acc={acc:.4f}')"
    ]
@@ -978,8 +798,8 @@
  ],
  "metadata": {
   "kernelspec": {
-   "display_name": "Python 3",
-   "name": "python3"
+   "name": "python3",
+   "display_name": "Python 3"
   },
   "language_info": {
    "codemirror_mode": {
