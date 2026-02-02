@@ -14,7 +14,10 @@ import tensorflow as tf
 from tensorflow import keras
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 49b993103e45262306ed227d67d9e8713d0801cf
 =======
 >>>>>>> 49b993103e45262306ed227d67d9e8713d0801cf
 from keras.layers import Dense, Dropout
