@@ -67,10 +67,10 @@
     },
     {
       "cell_type": "code",
-      "execution_count": null,
       "metadata": {
         "id": "5qghZXCTZeow"
       },
+      "execution_count": null,
       "outputs": [],
       "source": [
         "!git clone https://github.com/tpq-classes/ai_in_finance_book.git\n",
@@ -80,14 +80,25 @@
     },
     {
       "cell_type": "code",
-      "execution_count": null,
+      "source": [
+        "!pip install -U scikit-learn==1.5.2"
+      ],
       "metadata": {
         "id": "MtxPfGwnlE_Y"
       },
-      "outputs": [],
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
       "source": [
-        "!pip install -U scikit-learn==1.5.2 scikeras"
-      ]
+        "#!pip install scikeras"
+      ],
+      "metadata": {
+        "id": "A_t7KDync17X"
+      },
+      "execution_count": null,
+      "outputs": []
     },
     {
       "cell_type": "code",
@@ -381,14 +392,14 @@
     },
     {
       "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "baQxPwYYZepC"
+      },
+      "outputs": [],
       "source": [
         "p = model.predict(f).flatten()"
-      ],
-      "metadata": {
-        "id": "50c6a740"
-      },
-      "execution_count": null,
-      "outputs": []
+      ]
     },
     {
       "cell_type": "code",
@@ -563,14 +574,14 @@
     },
     {
       "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "tviOkRu3ZepF"
+      },
+      "outputs": [],
       "source": [
         "p = model.predict(f).flatten()"
-      ],
-      "metadata": {
-        "id": "13d76ed3"
-      },
-      "execution_count": null,
-      "outputs": []
+      ]
     },
     {
       "cell_type": "code",
@@ -761,6 +772,11 @@
     },
     {
       "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "LyCQlROeZepI"
+      },
+      "outputs": [],
       "source": [
         "fig, ax = plt.subplots(2, 1, sharex=True, figsize=(10, 8))\n",
         "ax[0].plot(f_tr, l_tr, 'ro', label='training data')\n",
@@ -771,12 +787,7 @@
         "p = model.predict(f_va)\n",
         "ax[1].plot(f_va, p, '--', label=f'DNN (va)')\n",
         "ax[1].legend();"
-      ],
-      "metadata": {
-        "id": "43063f3f"
-      },
-      "execution_count": null,
-      "outputs": []
+      ]
     },
     {
       "cell_type": "code",
@@ -815,15 +826,15 @@
     },
     {
       "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "23riqMKlZepJ"
+      },
+      "outputs": [],
       "source": [
         "p_ols = np.polyval(reg[5], f_te)\n",
         "p_dnn = model.predict(f_te).flatten()"
-      ],
-      "metadata": {
-        "id": "95cb5afe"
-      },
-      "execution_count": null,
-      "outputs": []
+      ]
     },
     {
       "cell_type": "code",
@@ -1168,12 +1179,9 @@
     }
   ],
   "metadata": {
-    "colab": {
-      "provenance": []
-    },
     "kernelspec": {
-      "display_name": "Python 3",
-      "name": "python3"
+      "name": "python3",
+      "display_name": "Python 3"
     },
     "language_info": {
       "codemirror_mode": {
@@ -1186,6 +1194,9 @@
       "nbconvert_exporter": "python",
       "pygments_lexer": "ipython3",
       "version": "3.10.13"
+    },
+    "colab": {
+      "provenance": []
     }
   },
   "nbformat": 4,

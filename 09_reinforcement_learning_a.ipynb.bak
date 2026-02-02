@@ -39,8 +39,8 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
    "metadata": {},
+   "execution_count": null,
    "outputs": [],
    "source": [
     "!git clone https://github.com/tpq-classes/ai_in_finance_book.git\n",
@@ -472,26 +472,14 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "d604ebaf",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
    "source": [
     "from tensorflow.python.framework.ops import disable_eager_execution\n",
     "disable_eager_execution()"
    ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "52e17f05",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
-   "outputs": [],
-   "source": []
   },
   {
    "cell_type": "code",
@@ -518,12 +506,10 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "e912d9f0",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
    "source": [
     "class NNAgent:\n",
     "    def __init__(self):\n",
@@ -550,60 +536,6 @@
     "                    \n",
     "    def train_model(self, state, action):\n",
     "        self.model.fit(state, np.array([action,]),\n",
-    "                       epochs=1, verbose=False)\n",
-    "    \n",
-    "    def learn(self, episodes):\n",
-    "        for e in range(1, episodes + 1):\n",
-    "            state, _ = env.reset()\n",
-    "            for _ in range(201):\n",
-    "                state = np.reshape(state, [1, 4])\n",
-    "                action = self.act(state)\n",
-    "                next_state, reward, done, trunc,  info = env.step(action)\n",
-    "                if done:\n",
-    "                    score = _ + 1\n",
-    "                    self.scores.append(score)\n",
-    "                    self.max = max(score, self.max)\n",
-    "                    print('episode: {:4d}/{} | score: {:3d} | max: {:3d}'\n",
-    "                          .format(e, episodes, score, self.max), end='\\r')\n",
-    "                    break\n",
-    "                self.memory.append((state, action))\n",
-    "                self.train_model(state, action)\n",
-    "                state = next_state"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "b697b837",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
-   "outputs": [],
-   "source": [
-    "class NNAgent:\n",
-    "    def __init__(self):\n",
-    "        self.max = 0\n",
-    "        self.scores = list()\n",
-    "        self.memory = list()\n",
-    "        self.model = self._build_model()\n",
-    "        \n",
-    "    def _build_model(self):\n",
-    "        model = Sequential()\n",
-    "        model.add(Dense(24, input_dim=4,\n",
-    "                        activation='relu'))\n",
-    "        model.add(Dense(1, activation='sigmoid'))\n",
-    "        model.compile(loss='binary_crossentropy',\n",
-    "                      optimizer=keras.optimizers.RMSprop(learning_rate=0.001))\n",
-    "        return model\n",
-    "        \n",
-    "    def act(self, state):\n",
-    "        if random.random() <= 0.5:\n",
-    "            return env.action_space.sample()\n",
-    "        action = np.where(self.model.predict(state, batch_size=None, verbose=0)[0, 0] > 0.5, 1, 0)\n",
-    "        return action\n",
-    "                    \n",
-    "    def train_model(self, state, action):\n",
-    "        self.model.fit(state, np.array([action,], verbose=0),\n",
     "                       epochs=1, verbose=False)\n",
     "    \n",
     "    def learn(self, episodes):\n",
@@ -683,27 +615,12 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "c7e8ec7b",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
-   "source": [
-    "accuracy_score(np.where(agent.model.predict(f) > 0.5, 1, 0), l)"
-   ]
-  },
-  {
    "cell_type": "code",
    "execution_count": null,
-   "id": "33bc7507",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
-    "import tensorflow as tf\n",
-    "accuracy_score(np.where(agent.model(tf.convert_to_tensor(f, dtype=tf.float32), training=False).numpy() > 0.5, 1, 0), l)"
+    "accuracy_score(np.where(agent.model.predict(f) > 0.5, 1, 0), l)"
    ]
   },
   {
@@ -730,12 +647,10 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "cae1d2e4",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
    "source": [
     "class DQLAgent:\n",
     "    def __init__(self, gamma=0.95, hu=24, opt=keras.optimizers.Adam,\n",
@@ -816,106 +731,6 @@
     "            for _ in range(5001):\n",
     "                state = np.reshape(state, [1, self.osn])\n",
     "                action = np.argmax(self.model.predict(state)[0])\n",
-    "                next_state, reward, done, trunc, info = env.step(action)\n",
-    "                state = next_state\n",
-    "                if done:\n",
-    "                    treward = _ + 1\n",
-    "                    trewards.append(treward)\n",
-    "                    print('episode: {:4d}/{} | treward: {:4d}'\n",
-    "                          .format(e, episodes, treward), end='\\r')\n",
-    "                    break\n",
-    "        return trewards"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "b20e77d5",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
-   "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "class DQLAgent:\n",
-    "    def __init__(self, gamma=0.95, hu=24, opt=keras.optimizers.Adam,\n",
-    "           lr=0.001, finish=False):\n",
-    "        self.finish = finish\n",
-    "        self.epsilon = 1.0\n",
-    "        self.epsilon_min = 0.01\n",
-    "        self.epsilon_decay = 0.995\n",
-    "        self.gamma = gamma\n",
-    "        self.batch_size = 32\n",
-    "        self.max_treward = 0\n",
-    "        self.averages = list()\n",
-    "        self.memory = deque(maxlen=2000)\n",
-    "        self.osn = env.observation_space.shape[0]\n",
-    "        self.model = self._build_model(hu, opt, lr)\n",
-    "        \n",
-    "    def _build_model(self, hu, opt, lr):\n",
-    "        model = Sequential()\n",
-    "        model.add(Dense(hu, input_dim=self.osn,\n",
-    "                        activation='relu'))\n",
-    "        model.add(Dense(hu, activation='relu'))\n",
-    "        model.add(Dense(env.action_space.n, activation='linear'))\n",
-    "        model.compile(loss='mse', optimizer=opt(learning_rate=lr))\n",
-    "        return model\n",
-    "        \n",
-    "    def act(self, state):\n",
-    "        if random.random() <= self.epsilon:\n",
-    "            return env.action_space.sample()\n",
-    "        action = self.model(tf.convert_to_tensor(state, dtype=tf.float32), training=False).numpy()[0]\n",
-    "        return np.argmax(action)\n",
-    "    \n",
-    "    def replay(self):\n",
-    "        batch = random.sample(self.memory, self.batch_size)\n",
-    "        for state, action, reward, next_state, done in batch:\n",
-    "            if not done:\n",
-    "                reward += self.gamma * np.amax(\n",
-    "                    self.model(tf.convert_to_tensor(next_state, dtype=tf.float32), training=False).numpy()[0])\n",
-    "            target = self.model(tf.convert_to_tensor(state, dtype=tf.float32), training=False).numpy()\n",
-    "            target[0, action] = reward\n",
-    "            self.model.fit(state, target, epochs=1,\n",
-    "                           verbose=False)\n",
-    "        if self.epsilon > self.epsilon_min:\n",
-    "            self.epsilon *= self.epsilon_decay\n",
-    "    \n",
-    "    def learn(self, episodes):\n",
-    "        trewards = []\n",
-    "        for e in range(1, episodes + 1):\n",
-    "            state, _ = env.reset()\n",
-    "            state = np.reshape(state, [1, self.osn])\n",
-    "            for _ in range(5000):\n",
-    "                action = self.act(state)\n",
-    "                next_state, reward, done, trunc, info = env.step(action)\n",
-    "                next_state = np.reshape(next_state,\n",
-    "                                        [1, self.osn])\n",
-    "                self.memory.append([state, action, reward,\n",
-    "                                     next_state, done])\n",
-    "                state = next_state\n",
-    "                if done:\n",
-    "                    treward = _ + 1\n",
-    "                    trewards.append(treward)\n",
-    "                    av = sum(trewards[-25:]) / 25\n",
-    "                    self.averages.append(av)\n",
-    "                    self.max_treward = max(self.max_treward, treward)\n",
-    "                    templ = 'episode: {:4d}/{} | treward: {:4d} | '\n",
-    "                    templ += 'av: {:6.1f} | max: {:4d}'\n",
-    "                    print(templ.format(e, episodes, treward, av,\n",
-    "                                       self.max_treward), end='\\r')\n",
-    "                    break\n",
-    "            if av > 195 and self.finish:\n",
-    "                print()\n",
-    "                break\n",
-    "            if len(self.memory) > self.batch_size:\n",
-    "                self.replay()\n",
-    "    def test(self, episodes):\n",
-    "        trewards = []\n",
-    "        for e in range(1, episodes + 1):\n",
-    "            state, _ = env.reset()\n",
-    "            for _ in range(5001):\n",
-    "                state = np.reshape(state, [1, self.osn])\n",
-    "                action = np.argmax(self.model(tf.convert_to_tensor(state, dtype=tf.float32), training=False).numpy()[0])\n",
     "                next_state, reward, done, trunc, info = env.step(action)\n",
     "                state = next_state\n",
     "                if done:\n",
@@ -1182,8 +997,8 @@
  ],
  "metadata": {
   "kernelspec": {
-   "display_name": "Python 3",
-   "name": "python3"
+   "name": "python3",
+   "display_name": "Python 3"
   },
   "language_info": {
    "codemirror_mode": {

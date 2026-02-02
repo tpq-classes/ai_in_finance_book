@@ -39,8 +39,8 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
    "metadata": {},
+   "execution_count": null,
    "outputs": [],
    "source": [
     "!git clone https://github.com/tpq-classes/ai_in_finance_book.git\n",
@@ -267,12 +267,10 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "4e53b73a",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
    "source": [
     "%time model.fit(l0, y, seed=100)"
    ]
@@ -280,22 +278,8 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "118db1c9",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
-   "source": [
-    "%time model.fit(l0, y, seed=100, verbose=0)"
-   ]
-  },
-  {
-   "cell_type": "raw",
-   "id": "4132f63a",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
    "source": [
     "model.predict(l0)"
    ]
@@ -303,38 +287,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "dfbfa5ad",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "model(tf.convert_to_tensor(l0, dtype=tf.float32), training=False).numpy()"
-   ]
-  },
-  {
-   "cell_type": "raw",
-   "id": "d8e740c1",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
    "source": [
     "model.predict(l0) - y"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "aabff41b",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
-   "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "model(tf.convert_to_tensor(l0, dtype=tf.float32), training=False).numpy() - y"
    ]
   },
   {
@@ -394,26 +350,12 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "b3fc26ca",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
-   "source": [
-    "%time model.fit(l0, y, 4000)"
-   ]
-  },
-  {
    "cell_type": "code",
    "execution_count": null,
-   "id": "43bf6380",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
-    "%time model.fit(l0, y, 4000, verbose=0)"
+    "%time model.fit(l0, y, 4000)"
    ]
   },
   {
@@ -426,27 +368,12 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "7554b3f1",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
-   "source": [
-    "model.predict(l0).round() == y"
-   ]
-  },
-  {
    "cell_type": "code",
    "execution_count": null,
-   "id": "7dda000b",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
-    "import tensorflow as tf\n",
-    "model(tf.convert_to_tensor(l0, dtype=tf.float32), training=False).numpy().round() == y"
+    "model.predict(l0).round() == y"
    ]
   },
   {
@@ -627,26 +554,12 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "5b5cf53c",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
-   "source": [
-    "%time model.fit(l0, y, 8000)"
-   ]
-  },
-  {
    "cell_type": "code",
    "execution_count": null,
-   "id": "acf5d18b",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
-    "%time model.fit(l0, y, 8000, verbose=0)"
+    "%time model.fit(l0, y, 8000)"
    ]
   },
   {
@@ -703,26 +616,12 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "9ac2a3df",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
-   "source": [
-    "model.fit(l0.round(), y.round())"
-   ]
-  },
-  {
    "cell_type": "code",
    "execution_count": null,
-   "id": "ff3bfe94",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
-    "model.fit(l0.round(, verbose=0), y.round())"
+    "model.fit(l0.round(), y.round())"
    ]
   },
   {
@@ -825,12 +724,10 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "53bc15ce",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
    "source": [
     "%time model.fit(data[cols].values, y)"
    ]
@@ -838,37 +735,10 @@
   {
    "cell_type": "code",
    "execution_count": null,
-   "id": "42b13d58",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
-   "source": [
-    "%time model.fit(data[cols].values, y, verbose=0)"
-   ]
-  },
-  {
-   "cell_type": "raw",
-   "id": "3b31df92",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
    "source": [
     "data['p'] = np.where(model.predict(data[cols]) > 0.5, 1, -1)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "e9b35fbe",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
-   "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "data['p'] = np.where(model(tf.convert_to_tensor(data[cols], dtype=tf.float32), training=False).numpy() > 0.5, 1, -1)"
    ]
   },
   {
@@ -919,8 +789,8 @@
  ],
  "metadata": {
   "kernelspec": {
-   "display_name": "Python 3",
-   "name": "python3"
+   "name": "python3",
+   "display_name": "Python 3"
   },
   "language_info": {
    "codemirror_mode": {

@@ -32,8 +32,8 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
    "metadata": {},
+   "execution_count": null,
    "outputs": [],
    "source": [
     "!git clone https://github.com/tpq-classes/ai_in_finance_book.git\n",
@@ -208,12 +208,10 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "3c3757b8",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
    "source": [
     "def backtest(agent, env):\n",
     "    env.min_accuracy = 0.0\n",
@@ -224,31 +222,6 @@
     "    while not done:\n",
     "        action = np.argmax(\n",
     "            agent.model.predict(reshape(state))[0, 0])\n",
-    "        position = 1 if action == 1 else -1\n",
-    "        env.data.loc[:, 'p'].iloc[env.bar] = position\n",
-    "        state, reward, done, info = env.step(action)\n",
-    "    env.data['s'] = env.data['p'] * env.data['r'] * learn_env.leverage"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "0895f23a",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
-   "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "def backtest(agent, env):\n",
-    "    env.min_accuracy = 0.0\n",
-    "    env.min_performance = 0.0\n",
-    "    done = False\n",
-    "    env.data['p'] = 0\n",
-    "    state = env.reset()\n",
-    "    while not done:\n",
-    "        action = np.argmax(\n",
-    "            agent.model(tf.convert_to_tensor(reshape(state, dtype=tf.float32), training=False).numpy())[0, 0])\n",
     "        position = 1 if action == 1 else -1\n",
     "        env.data.loc[:, 'p'].iloc[env.bar] = position\n",
     "        state, reward, done, info = env.step(action)\n",
@@ -480,12 +453,10 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "30dd060a",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
    "source": [
     "class TBBacktester(bt.BacktestingBase):\n",
     "    def _reshape(self, state):\n",
@@ -510,71 +481,6 @@
     "            state = self.env.get_state(bar)\n",
     "            action = np.argmax(self.model.predict(\n",
     "                        self._reshape(state.values))[0, 0])\n",
-    "            position = 1 if action == 1 else -1\n",
-    "            if self.position in [0, -1] and position == 1:\n",
-    "                if self.verbose:\n",
-    "                    print(50 * '-')\n",
-    "                    print(f'{date} | *** GOING LONG ***')\n",
-    "                if self.position == -1:\n",
-    "                    self.place_buy_order(bar - 1, units=-self.units)\n",
-    "                self.place_buy_order(bar - 1,\n",
-    "                                     amount=self.current_balance)\n",
-    "                if self.verbose:\n",
-    "                    self.print_net_wealth(bar)\n",
-    "                self.position = 1\n",
-    "            elif self.position in [0, 1] and position == -1:\n",
-    "                if self.verbose:\n",
-    "                    print(50 * '-')\n",
-    "                    print(f'{date} | *** GOING SHORT ***')\n",
-    "                if self.position == 1:\n",
-    "                    self.place_sell_order(bar - 1, units=self.units)\n",
-    "                self.place_sell_order(bar - 1,\n",
-    "                                      amount=self.current_balance)\n",
-    "                if self.verbose:\n",
-    "                    self.print_net_wealth(bar)\n",
-    "                self.position = -1\n",
-    "            self.net_wealths.append((date,\n",
-    "                                     self.calculate_net_wealth(price)))\n",
-    "        self.net_wealths = pd.DataFrame(self.net_wealths,\n",
-    "                                        columns=['date', 'net_wealth'])\n",
-    "        self.net_wealths.set_index('date', inplace=True)\n",
-    "        self.net_wealths.index = pd.DatetimeIndex(\n",
-    "                                        self.net_wealths.index)\n",
-    "        self.close_out(bar)"
-   ]
-  },
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "6c4b6cdf",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
-   "outputs": [],
-   "source": [
-    "import tensorflow as tf\n",
-    "class TBBacktester(bt.BacktestingBase):\n",
-    "    def _reshape(self, state):\n",
-    "        ''' Helper method to reshape state objects.\n",
-    "        '''\n",
-    "        return np.reshape(state, [1, self.env.lags, self.env.n_features])\n",
-    "    def backtest_strategy(self):\n",
-    "        ''' Event-based backtesting of the trading bot's performance.\n",
-    "        '''\n",
-    "        self.units = 0\n",
-    "        self.position = 0\n",
-    "        self.trades = 0\n",
-    "        self.current_balance = self.initial_amount\n",
-    "        self.net_wealths = list()\n",
-    "        for bar in range(self.env.lags, len(self.env.data)):\n",
-    "            date, price = self.get_date_price(bar)\n",
-    "            if self.trades == 0:\n",
-    "                print(50 * '=')\n",
-    "                print(f'{date} | *** START BACKTEST ***')\n",
-    "                self.print_balance(bar)\n",
-    "                print(50 * '=')\n",
-    "            state = self.env.get_state(bar)\n",
-    "            action = np.argmax(self.model(tf.convert_to_tensor(self._reshape(state.values, dtype=tf.float32), training=False).numpy())[0, 0])\n",
     "            position = 1 if action == 1 else -1\n",
     "            if self.position in [0, -1] and position == 1:\n",
     "                if self.verbose:\n",
@@ -1040,8 +946,8 @@
  ],
  "metadata": {
   "kernelspec": {
-   "display_name": "Python 3",
-   "name": "python3"
+   "name": "python3",
+   "display_name": "Python 3"
   },
   "language_info": {
    "codemirror_mode": {

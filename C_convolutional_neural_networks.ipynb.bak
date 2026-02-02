@@ -39,8 +39,8 @@
   },
   {
    "cell_type": "code",
-   "execution_count": null,
    "metadata": {},
+   "execution_count": null,
    "outputs": [],
    "source": [
     "!git clone https://github.com/tpq-classes/ai_in_finance_book.git\n",
@@ -265,30 +265,13 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "426ac8a8",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
-   "source": [
-    "%%time\n",
-    "model.fit(np.atleast_3d(train[cols]), train['d'],\n",
-    "          epochs=60, batch_size=48, verbose=False,\n",
-    "          validation_split=0.15, shuffle=False)"
-   ]
-  },
-  {
    "cell_type": "code",
    "execution_count": null,
-   "id": "db7673d2",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
     "%%time\n",
-    "model.fit(np.atleast_3d(train[cols], verbose=0), train['d'],\n",
+    "model.fit(np.atleast_3d(train[cols]), train['d'],\n",
     "          epochs=60, batch_size=48, verbose=False,\n",
     "          validation_split=0.15, shuffle=False)"
    ]
@@ -330,27 +313,12 @@
    ]
   },
   {
-   "cell_type": "raw",
-   "id": "c9cb45b6",
-   "metadata": {
-    "auto_refactor_original_cell_type": "code",
-    "auto_refactor_role": "raw_backup"
-   },
-   "source": [
-    "test['p'] = np.where(model.predict(np.atleast_3d(test[cols])) > 0.5, 1, 0)"
-   ]
-  },
-  {
    "cell_type": "code",
    "execution_count": null,
-   "id": "b01426b7",
-   "metadata": {
-    "auto_refactor_role": "generated"
-   },
+   "metadata": {},
    "outputs": [],
    "source": [
-    "import tensorflow as tf\n",
-    "test['p'] = np.where(model(tf.convert_to_tensor(np.atleast_3d(test[cols], dtype=tf.float32), training=False).numpy()) > 0.5, 1, 0)"
+    "test['p'] = np.where(model.predict(np.atleast_3d(test[cols])) > 0.5, 1, 0)"
    ]
   },
   {
@@ -435,8 +403,8 @@
  ],
  "metadata": {
   "kernelspec": {
-   "display_name": "Python 3",
-   "name": "python3"
+   "name": "python3",
+   "display_name": "Python 3"
   },
   "language_info": {
    "codemirror_mode": {
