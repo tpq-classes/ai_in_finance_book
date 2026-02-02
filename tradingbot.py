@@ -13,7 +13,10 @@ from collections import deque
 import tensorflow as tf
 from tensorflow import keras
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 49b993103e45262306ed227d67d9e8713d0801cf
 from keras.layers import Dense, Dropout
 from keras.models import Sequential
 
