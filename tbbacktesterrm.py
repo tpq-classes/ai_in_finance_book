@@ -123,7 +123,7 @@ class TBBacktesterRM(btr.BacktestingBaseRM):
             # action = np.argmax(self.model.predict(self._reshape(state.values))[0, 0])
 
             x = tf.convert_to_tensor(self._reshape(state.values), dtype=tf.float32)
-            q = self.model(x, training=False)       # expected shape (1, lags, n_actions) or similar
+            q = self.model(x, training=False, verbose=False)       # expected shape (1, lags, n_actions) or similar
             q0 = q[0, 0]                            # keep original behavior: first time step
             action = int(tf.argmax(q0).numpy())
 
